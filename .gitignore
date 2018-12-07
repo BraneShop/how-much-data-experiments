@@ -1,0 +1,8 @@
+ckpts/
+csvs/
+experiments/
+__pycache__/
+flower_photos/
+holdout/
+scratch.ipynb
+.ipynb_checkpoints/
