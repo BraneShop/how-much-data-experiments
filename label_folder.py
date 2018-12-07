@@ -130,9 +130,9 @@ if __name__ == "__main__":
 
                 for i in top_k:
                     l = labels[i]
-                    data[f"predicted_{l}"] = results[i]
+                    data["predicted_{}".format(l)] = results[i]
                 inferences.append(data)
 
     df = pd.DataFrame(inferences)
-    df.to_csv(f"csvs/{prefix}-results.csv")
+    df.to_csv("csvs/{}-results.csv".format(prefix))
 

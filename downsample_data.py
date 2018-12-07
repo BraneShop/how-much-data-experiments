@@ -83,7 +83,7 @@ def main ():
 
             training_images = images[holdout:holdout + items]
             
-            newdir = f"{experiments_directory}/{amount}/{category}"
+            newdir = "{}/{}/{}".format(experiments_directory, amount, category)
             os.makedirs(newdir)
 
             for image in tqdm.tqdm(training_images):

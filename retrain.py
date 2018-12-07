@@ -135,7 +135,11 @@ import numpy as np
 import tensorflow as tf
 import tensorflow_hub as hub
 
-tf.random.set_random_seed(2)
+try:
+    tf.random.set_random_seed(2)
+except:
+    tf.set_random_seed(2)
+
 np.random.seed(2)
 
 FLAGS = None
@@ -865,7 +869,7 @@ def run_final_eval(train_session, module_spec, class_count, image_lists,
   import pandas as pd
   data = [{"accuracy": test_accuracy, "n": len(test_bottlenecks)}]
   prefix = FLAGS.image_dir.replace("/", "_")
-  pd.DataFrame(data).to_csv(f"csvs/{prefix}-test_data.csv")
+  pd.DataFrame(data).to_csv("csvs/{}-test_data.csv".format(prefix))
 
   if FLAGS.print_misclassified_test_images:
     tf.logging.info('=== MISCLASSIFIED TEST IMAGES ===')
@@ -1152,8 +1156,8 @@ def main(_):
 
     import pandas as pd
     prefix = FLAGS.image_dir.replace("/", "_")
-    pd.DataFrame(val_data).to_csv(f"csvs/{prefix}-val_data.csv")
-    pd.DataFrame(train_data).to_csv(f"csvs/{prefix}-train_data.csv")
+    pd.DataFrame(val_data).to_csv("csvs/{}-val_data.csv".format(prefix))
+    pd.DataFrame(train_data).to_csv("csvs/{}-train_data.csv".format(prefix))
 
 
     # Write out the trained graph and labels with the weights stored as

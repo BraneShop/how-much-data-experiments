@@ -32,7 +32,7 @@ def augment_images (image_paths, count=20):
         augmented = seq.augment_images(repeated)
 
         for k, aug in enumerate(augmented):
-            f = f"{tmp_path}/{name}_{k}{ext}"
+            f = "{}/{}_{}{}".format(tmp_path, name, k, ext)
             sp.imsave(f, aug)
             new_images.append(f)
 
@@ -135,7 +135,7 @@ def generate_augmentations (base_directory):
 
         for count in augmention_counts:
             images = augment_images(images, count=count)
-            newdir = f"{base_directory}-augx{count}/{category}"
+            newdir = "{}-augx{}/{}".format(base_directory, count, category)
 
             if os.path.isdir(newdir):
                 rmtree(newdir)
@@ -147,7 +147,7 @@ def generate_augmentations (base_directory):
 def main():
     amounts = [ "1", "3", 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 ]
     for a in amounts:
-        generate_augmentations(f"experiments/{a}")
+        generate_augmentations("experiments/{}".format(a))
 
 
 if __name__ == "__main__":
