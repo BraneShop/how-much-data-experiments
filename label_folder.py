@@ -65,6 +65,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--folder", help="folder to be processed", required=True)
+    parser.add_argument("--csv_folder", help="out folder", required=True, default="csvs")
     parser.add_argument("--graph", help="graph/model to be executed", required=True)
     parser.add_argument("--input_height", type=int, help="input height")
     parser.add_argument("--input_width", type=int, help="input width")
@@ -78,6 +79,7 @@ if __name__ == "__main__":
     model_file = args.graph
     folder     = args.folder
     prefix     = args.prefix
+    csv_folder = args.csv_folder
 
     if args.input_height:
         input_height = args.input_height
@@ -134,5 +136,5 @@ if __name__ == "__main__":
                 inferences.append(data)
 
     df = pd.DataFrame(inferences)
-    df.to_csv("csvs/{}-results.csv".format(prefix))
+    df.to_csv("{}/{}-results.csv".format(csv_folder, prefix))
 

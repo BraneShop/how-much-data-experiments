@@ -10,13 +10,7 @@ import tqdm
 #
 # `retrain.py` says 10, so let's use that.
 
-holdout_percent       = 10
-base_directory        = "flower_photos"
-holdout_directory     = "holdout"
-experiments_directory = "experiments"
-seed                  = 271828182
-
-amounts = ["1", "3", 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 ]
+base_directory = "flower_photos"
 
 def get_image_files (directory, base_directory=base_directory):
     directory = os.path.join(base_directory, directory)
@@ -36,7 +30,11 @@ def get_image_files (directory, base_directory=base_directory):
         yield full_path
 
 
-def main ():
+def main (amounts,
+            seed                  = 271828182,
+            holdout_percent       = 10,
+            holdout_directory     = "holdout",
+            experiments_directory = "experiments"):
     # For reproducibility
     np.random.seed(seed)
 
@@ -90,4 +88,5 @@ def main ():
                 copyfile(image, newdir + "/" + os.path.basename(image))
 
 if __name__ == "__main__":
-    main()
+    amounts = ["1", "3", 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 ]
+    main(amounts)

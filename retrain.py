@@ -869,7 +869,7 @@ def run_final_eval(train_session, module_spec, class_count, image_lists,
   import pandas as pd
   data = [{"accuracy": test_accuracy, "n": len(test_bottlenecks)}]
   prefix = FLAGS.image_dir.replace("/", "_")
-  pd.DataFrame(data).to_csv("csvs/{}-test_data.csv".format(prefix))
+  pd.DataFrame(data).to_csv("{}/{}-test_data.csv".format(FLAGS.csv_folder, prefix))
 
   if FLAGS.print_misclassified_test_images:
     tf.logging.info('=== MISCLASSIFIED TEST IMAGES ===')
@@ -1156,8 +1156,8 @@ def main(_):
 
     import pandas as pd
     prefix = FLAGS.image_dir.replace("/", "_")
-    pd.DataFrame(val_data).to_csv("csvs/{}-val_data.csv".format(prefix))
-    pd.DataFrame(train_data).to_csv("csvs/{}-train_data.csv".format(prefix))
+    pd.DataFrame(val_data).to_csv("{}/{}-val_data.csv".format(FLAGS.csv_folder, prefix))
+    pd.DataFrame(train_data).to_csv("{}/{}-train_data.csv".format(FLAGS.csv_folder, prefix))
 
 
     # Write out the trained graph and labels with the weights stored as
@@ -1198,6 +1198,12 @@ if __name__ == '__main__':
       type=str,
       default='abc',
       help='Salt for the hash to determin train/val/test set assignment.'
+  )
+  parser.add_argument(
+      '--csv_folder',
+      type=str,
+      default='csvs',
+      help='CSV folder.'
   )
   parser.add_argument(
       '--intermediate_store_frequency',
