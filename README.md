@@ -17,6 +17,8 @@ Open "Experiment.ipynb" in a notebook environment. Run through the cells in
 order; modifying the parameters at the top as you wish. There's a little
 busywork you'll need to do if you change foldernames.
 
+[Run this notebook on Google
+Colaboratory](https://colab.research.google.com/drive/1VWxeyhOGMTHHVZFe33s5zaHIKXdDUkA2).
 
 ### Running everything
 
